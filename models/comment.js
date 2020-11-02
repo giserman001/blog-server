@@ -42,11 +42,11 @@ module.exports = (sequelize, dataTypes) => {
     //   targetKey: 'id',
     //   constraints: false
     // })
-    // Comment.hasMany(models.reply, {
-    //   foreignKey: 'commentId',
-    //   sourceKey: 'id',
-    //   constraints: false // 在表之间添加约束意味着当使用 sequelize.sync 时，表必须以特定顺序在数据库中创建表。我们可以向其中一个关联传递
-    // })
+    Comment.hasMany(models.reply, {
+      foreignKey: 'commentId',
+      sourceKey: 'id',
+      constraints: false // 在表之间添加约束意味着当使用 sequelize.sync 时，表必须以特定顺序在数据库中创建表。我们可以向其中一个关联传递
+    })
   }
   return Comment
 }
