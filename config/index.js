@@ -3,6 +3,7 @@ const devMode = process.env.NODE_ENV === 'development'
 const config = {
   PORT: 6060, // 服务启动端口
   ADMIN_GITHUB_LOGIN_NAME: 'giserman001', // github 登录的账户名 user
+  SALT_WORK_FACTOR: 10, // 密码加盐
   GITHUB: {
     // github相关配置
     client_id: '',
