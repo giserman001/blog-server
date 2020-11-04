@@ -58,7 +58,7 @@ const config = {
 if (!devMode) {
   console.log('env production....')
 
-  // ==== 配置数据库
+  // ==== 配置数据库 TODO debugger时需要去掉
   config.DATABASE = {
     ...config.DATABASE,
     database: '', // 数据库名

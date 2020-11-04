@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const chalk = require('chalk')
 const { DATABASE } = require('../config')
-const { Sequelize } = require('sequelize')
+const { Sequelize, Op } = require('sequelize')
 
 const sequelize = new Sequelize(DATABASE.database, DATABASE.user, DATABASE.password, {
   ...DATABASE.options,
@@ -26,5 +26,6 @@ Object.keys(db).forEach((modelName) => {
 })
 
 db.sequelize = sequelize
+db.Op = Op
 
 module.exports = db

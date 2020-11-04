@@ -6,8 +6,11 @@
   "dependencies": {
     "bcrypt": "^5.0.0",
     "joi": "^17.3.0",
+    "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.0",
     "koa-body": "^4.2.0",
+    "koa-json-error": "^3.1.2",
+    "koa-logger": "^3.2.1",
     "koa-router": "^9.4.0",
     "koa2-cors": "^2.0.6",
     "moment": "^2.29.1",
