@@ -1,0 +1,14 @@
+INSERT INTO `comment`(`id`, `articleId`, `content`, `createdAt`, `updatedAt`, `userId`) VALUES (2, -1, '测试一下', '2019-09-19 22:00:36', '2019-09-19 22:00:36', 39449488);
+INSERT INTO `comment`(`id`, `articleId`, `content`, `createdAt`, `updatedAt`, `userId`) VALUES (3, 76, '评论~~~~', '2019-09-19 22:01:56', '2019-09-19 22:01:56', 39449488);
+INSERT INTO `comment`(`id`, `articleId`, `content`, `createdAt`, `updatedAt`, `userId`) VALUES (9, 76, '6', '2019-09-21 11:48:19', '2019-09-21 11:48:19', 22385375);
+INSERT INTO `comment`(`id`, `articleId`, `content`, `createdAt`, `updatedAt`, `userId`) VALUES (10, -1, '🌝🌝🌝 周末愉快', '2019-09-21 13:08:36', '2019-09-21 13:08:36', 34113677);
+INSERT INTO `comment`(`id`, `articleId`, `content`, `createdAt`, `updatedAt`, `userId`) VALUES (12, -1, '希望能赚点外快~\n有开发需求的希望能联系我一下\nQQ 434358603', '2019-09-21 15:10:04', '2019-09-21 15:10:04', 34113677);
+INSERT INTO `comment`(`id`, `articleId`, `content`, `createdAt`, `updatedAt`, `userId`) VALUES (14, 3, '非常不错，值得收藏学习', '2019-10-12 16:58:52', '2019-10-12 16:58:52', 42688338);
+INSERT INTO `comment`(`id`, `articleId`, `content`, `createdAt`, `updatedAt`, `userId`) VALUES (16, -1, '牛逼啊', '2019-10-20 19:06:31', '2019-10-20 19:06:31', 42410507);
+INSERT INTO `comment`(`id`, `articleId`, `content`, `createdAt`, `updatedAt`, `userId`) VALUES (17, 76, '不错', '2019-10-23 11:31:34', '2019-10-23 11:31:34', 25702916);
+INSERT INTO `comment`(`id`, `articleId`, `content`, `createdAt`, `updatedAt`, `userId`) VALUES (18, -1, '1', '2019-11-13 16:07:34', '2019-11-13 16:07:34', 43398519);
+INSERT INTO `comment`(`id`, `articleId`, `content`, `createdAt`, `updatedAt`, `userId`) VALUES (19, 76, '666', '2019-11-14 19:34:17', '2019-11-14 19:34:17', 43398521);
+INSERT INTO `comment`(`id`, `articleId`, `content`, `createdAt`, `updatedAt`, `userId`) VALUES (21, -1, '<script>alert(\'郭大大好\')</script>', '2019-11-16 11:35:48', '2019-11-16 11:35:48', 43398522);
+INSERT INTO `comment`(`id`, `articleId`, `content`, `createdAt`, `updatedAt`, `userId`) VALUES (27, -1, '文明语言谢谢', '2019-11-27 14:23:05', '2019-11-27 14:23:05', 34113677);
+INSERT INTO `comment`(`id`, `articleId`, `content`, `createdAt`, `updatedAt`, `userId`) VALUES (53, -1, '流弊', '2020-01-06 16:14:39', '2020-01-06 16:14:39', 47529553);
+INSERT INTO `comment`(`id`, `articleId`, `content`, `createdAt`, `updatedAt`, `userId`) VALUES (54, -1, '新年快乐', '2020-01-20 11:21:13', '2020-01-20 11:21:13', 47529554);
