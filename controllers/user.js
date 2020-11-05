@@ -1,5 +1,12 @@
 const Joi = require('joi')
-const { user: UserModel, Op } = require('../models')
+const {
+  user: UserModel,
+  ip: IpModel,
+  Op,
+  sequelize,
+  comment: commentModel,
+  reply: replyModel,
+} = require('../models')
 const { comparePassword, encrypt } = require('../utils/bcrypt')
 const { createToken } = require('../utils/token')
 class UserController {
@@ -143,6 +150,61 @@ class UserController {
    */
   static async githubLogin(ctx, code) {
     console.log(ctx, code)
+  }
+  /**
+   * 通过用户id更新用户信息
+   * @param {String} userId - 用户id
+   * @param {Object} data - 需要更新的数据
+   */
+  static updateUserById(userId, data) {
+    return UserModel.update(data, { where: { id: userId } })
+  }
+  /**
+   * 更新用户
+   * @param {Number} userId - 用户名id
+   * @param {Boolean} notice - 接收邮件通知
+   * @param {Boolean} disabledDiscuss - 禁言
+   */
+  static async updateUser(ctx) {
+    // 设置动态路由 ctx.params
+    const validator = ctx.validate(
+      { ...ctx.params, ...ctx.request.body },
+      {
+        userId: Joi.number().required(),
+        notice: Joi.boolean(),
+        disabledDiscuss: Joi.boolean(),
+      }
+    )
+    if (validator) {
+      const { userId } = ctx.params
+      const { notice, disabledDiscuss } = ctx.request.body
+      await UserController.updateUserById(userId, { notice, disabledDiscuss })
+      // if (typeof disabledDiscuss !== 'undefined' && disabledDiscuss !== '') {
+      //   await IpModel.update({ auth: !disabledDiscuss }, { where: { userId: parseInt(userId) } })
+      // }
+      ctx.client(null, '更新成功')
+    }
+  }
+  /**
+   * 删除用户
+   * @param {Number} userId - 用户名id
+   */
+  static async deleteUser(ctx) {
+    // 设置动态路由 ctx.params
+    const validator = ctx.validate(ctx.params, {
+      userId: Joi.number().required(),
+    })
+    if (validator) {
+      const { userId } = ctx.params
+      // 下面两种方法都是可以的
+      // await commentModel.destroy({where: {userId}})
+      // await replyModel.destroy({where: {userId}})
+      await sequelize.query(
+        `delete comment, reply from comment left join reply on comment.id=reply.commentId where comment.userId=${userId}`
+      )
+      await UserModel.destroy({ where: { id: userId } })
+      ctx.client(null, '删除成功')
+    }
   }
 }
 
