@@ -7,6 +7,7 @@ const loadRouter = require('./router')
 const config = require('./config')
 const db = require('./models')
 const chalk = require('chalk')
+const authHandler = require('./middlewares/authHandler')
 
 const app = new Koa()
 // TODO 学习这里的处理方式  app.context binding
@@ -35,6 +36,7 @@ app.use(
       process.env.NODE_ENV !== 'development' ? rest : { stack, ...rest },
   })
 )
+app.use(authHandler) // 权限验证+token验证
 // 加载路由
 loadRouter(app)
 
