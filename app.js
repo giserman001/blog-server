@@ -19,7 +19,10 @@ const devMode = process.env.NODE_ENV === 'development'
 
 // 解决跨域
 app.use(Cors())
-app.use(KoaBody())
+app.use(KoaBody({
+  multipart: true,
+  strict: false // 如果启用，则不解析GET，HEAD，DELETE请求，默认为true
+}))
 app.use(logger())
 app.use(
   error({
