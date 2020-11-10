@@ -3,9 +3,7 @@ const {
   user: UserModel,
   ip: IpModel,
   Op,
-  sequelize,
-  comment: commentModel,
-  reply: replyModel,
+  sequelize
 } = require('../models')
 const { comparePassword, encrypt } = require('../utils/bcrypt')
 const { createToken } = require('../utils/token')
@@ -179,9 +177,10 @@ class UserController {
       const { userId } = ctx.params
       const { notice, disabledDiscuss } = ctx.request.body
       await UserController.updateUserById(userId, { notice, disabledDiscuss })
-      // if (typeof disabledDiscuss !== 'undefined' && disabledDiscuss !== '') {
-      //   await IpModel.update({ auth: !disabledDiscuss }, { where: { userId: parseInt(userId) } })
-      // }
+      if (typeof disabledDiscuss !== 'undefined' && disabledDiscuss !== '') {
+        // 禁言和封ip是两回事
+        await IpModel.update({ auth: !disabledDiscuss }, { where: { userId: parseInt(userId) } })
+      }
       ctx.client(null, '更新成功')
     }
   }

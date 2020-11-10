@@ -30,11 +30,11 @@ module.exports = (sequelize, dataTypes) => {
     }
   )
   Reply.associate = (models) => {
-    // Reply.belongsTo(models.user, {
-    //   foreignKey: 'userId',
-    //   targetKey: 'id',
-    //   constraints: false
-    // })
+    Reply.belongsTo(models.user, {
+      foreignKey: 'userId',
+      targetKey: 'id',
+      constraints: false
+    })
   }
   return Reply
 }

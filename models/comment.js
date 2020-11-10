@@ -37,11 +37,11 @@ module.exports = (sequelize, dataTypes) => {
     //   constraints: false
     // })
 
-    // Comment.belongsTo(models.user, {
-    //   foreignKey: 'userId',
-    //   targetKey: 'id',
-    //   constraints: false
-    // })
+    Comment.belongsTo(models.user, {
+      foreignKey: 'userId',
+      targetKey: 'id',
+      constraints: false
+    })
     Comment.hasMany(models.reply, {
       foreignKey: 'commentId',
       sourceKey: 'id',

@@ -61,10 +61,31 @@ class ArticleController {
       const data = await ArticleModel.findOne({
         where: { id: ctx.params.id },
         include: [
-          // 查找 分类 标签 评论 回复... TODO 暂时先只查询：分类 标签，评论和回复后续添加
+          // 查找 分类 标签 评论 回复... TODO github相关代码
           { model: TagModel, attributes: ['name'] },
           { model: CategoryModel, attributes: ['name'] },
+          {
+            model: CommentModel,
+            attributes: ['id', 'content', 'createdAt'],
+            include: [
+              {
+                model: ReplyModel,
+                attributes: ['id', 'content', 'createdAt'],
+                include: [
+                  {
+                    model: UserModel,
+                    as: 'user',
+                    attributes: { exclude: ['updatedAt', 'password'] },
+                  },
+                ],
+              },
+              { model: UserModel, as: 'user', attributes: { exclude: ['updatedAt', 'password'] } },
+            ],
+            row: true
+          },
         ],
+        order: [[CommentModel, 'createdAt', 'DESC'], [[CommentModel, ReplyModel, 'createdAt', 'ASC']]], // comment model order
+        row: true
       })
       const { type = 1 } = ctx.query
       // view count 预览次数
@@ -178,7 +199,7 @@ class ArticleController {
   }
   /**
    * 删除文章(一篇或者多篇)
-   * @param {Number} id - 文章id TODO 等评论和回复做好
+   * @param {Number} id - 文章id
    */
   static async deleteArticle(ctx) {
     const validator = ctx.validate(ctx.request.body, {
