@@ -12,6 +12,6 @@ module.exports = async (ctx, next) => {
       ctx.throw(401, '当前用户无权限')
     }
   } else {
-    ctx.throw(401, 'token无效')
+    ctx.client(null, 'token无效', 20006)
   }
 }
