@@ -137,14 +137,14 @@ class ArticleController {
         },
         include: [
           // TODO 这里暂时只考虑分类和标签
-          { model: TagModel, attributes: ['name'], where: tagFilter },
+          { model: TagModel, attributes: ['name'], where: tagFilter},
           { model: CategoryModel, attributes: ['name'], where: categoryFilter },
         ],
         offset: (page - 1) * pageSize,
         limit: parseInt(pageSize),
         order: articleOrder,
         row: true,
-        // distinct: true, // count 计算
+        distinct: true, // count 计算
       })
       // 只是获取预览，减少打了的数据传输。。。 TODO 后续添加
       // if (preview) {
