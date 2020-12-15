@@ -4,7 +4,7 @@ const { all_auth, checkAuth } = require('../utils/permission')
 module.exports = async (ctx, next) => {
   const isCheck = checkToken(ctx, all_auth)
   if (isCheck) {
-    const role = toTokenGetRole(ctx)
+    const { role } = toTokenGetRole(ctx)
     const isAuth = checkAuth(ctx, role)
     if (isAuth) {
       await next()

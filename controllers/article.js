@@ -144,7 +144,7 @@ class ArticleController {
         limit: parseInt(pageSize),
         order: articleOrder,
         row: true,
-        distinct: true, // count 计算
+        distinct: true, // count 计算 去重
       })
       // 只是获取预览，减少打了的数据传输。。。 TODO 后续添加
       // if (preview) {

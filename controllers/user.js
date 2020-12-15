@@ -6,7 +6,7 @@ const {
   sequelize
 } = require('../models')
 const { comparePassword, encrypt } = require('../utils/bcrypt')
-const { createToken } = require('../utils/token')
+const { createToken, toTokenGetRole } = require('../utils/token')
 class UserController {
   /**
    * 获取用户列表
@@ -203,6 +203,19 @@ class UserController {
       )
       await UserModel.destroy({ where: { id: userId } })
       ctx.client(null, '删除成功')
+    }
+  }
+  /**
+   * 通过token获取用户信息
+   */
+  static async toTokenUser(ctx) {
+    // 设置动态路由 ctx.params
+    const { userId } = toTokenGetRole(ctx)
+    if (userId) {
+      const user = await UserModel.findOne({ where: { id: userId } })
+      ctx.client(user, '成功')
+    } else {
+      ctx.throw(403, '用户不存在')
     }
   }
 }

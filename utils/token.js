@@ -22,7 +22,7 @@ const checkToken = (ctx, all_auth) => {
     return v.regexp.test(url) && (v.required === 'all' || v.required.toUpperCase().includes(method))
   })
   if (is) {
-    const role = toTokenGetRole(ctx)
+    const { role } = toTokenGetRole(ctx)
     if (role) return true
     return false
   }
@@ -33,13 +33,12 @@ const checkToken = (ctx, all_auth) => {
  * @param {Object} ctx app.context
  */
 const toTokenGetRole = (ctx) => {
-  let role = ''
+  let decoded = ''
   const token = getHeadersToken(ctx)
   if (token) {
-    var decoded = jwt.verify(token, TOKEN.secret)
-    role = decoded && decoded.role
+    decoded = jwt.verify(token, TOKEN.secret) // {username: 'liuya',userId: 47529565,role: 1,iat: 1608012345,exp: 1610604345}
   }
-  return role
+  return decoded
 }
 
 /**

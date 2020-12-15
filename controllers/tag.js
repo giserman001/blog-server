@@ -7,7 +7,7 @@ class TagController {
    * */
   static async getTagList(ctx) {
     const data = await TagModel.findAll({
-      attributes: ['name', [sequelize.fn('COUNT', sequelize.col('name')), 'count']],
+      attributes: ['id', 'name', [sequelize.fn('COUNT', sequelize.col('name')), 'count']],
       group: 'name',
       where: {
         articleId: {
@@ -23,7 +23,7 @@ class TagController {
    * */
   static async getCategoryList(ctx) {
     const data = await CategoryModel.findAll({
-      attributes: ['name', [sequelize.fn('COUNT', sequelize.col('name')), 'count']],
+      attributes: ['id', 'name', [sequelize.fn('COUNT', sequelize.col('name')), 'count']],
       group: 'name',
       where: {
         articleId: {
